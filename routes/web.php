@@ -27,6 +27,8 @@ Route::group(['middleware'=>'admin'], function(){
         return view('admin.index');
 
 
+
+
     });
 
 
@@ -73,6 +75,9 @@ Route::group(['middleware'=>'admin'], function(){
 
     ]]);
 
+
+
+
     Route::resource('admin/media', 'AdminMediasController',['names'=>[
 
         'index'=>'admin.media.index',
@@ -81,7 +86,11 @@ Route::group(['middleware'=>'admin'], function(){
         'edit'=>'admin.media.edit'
 
 
+
+
     ]]);
+
+    Route::delete('delete/media', 'AdminMediasController@deleteMedia');
 
 
     Route::resource('admin/comments', 'PostCommentsController',['names'=>[
