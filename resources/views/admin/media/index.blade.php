@@ -12,7 +12,7 @@
     @if($photos)
 
 
-        <form action="/delete/media" method="post" class="form-inline">
+        <form action="delete/media" method="post" class="form-inline">
 
             {{csrf_field()}}
 
@@ -22,12 +22,12 @@
             <div class="form-group">
                 <select name="checkBoxArray" id="" class="form-control">
 
-                    <option value="delete">Delete</option>
+                    <option value="">Delete</option>
 
                 </select>
             </div>
             <div class="form-group">
-               <input type="submit" class="btn-primary">
+               <input type="submit" name="delete_all" class="btn-primary">
             </div>
 
 
@@ -52,13 +52,13 @@
                     <td>{{$photo->created_at ? $photo->created_at : 'no date' }}</td>
                     <td>
 
-                        {!! Form::open(['method'=>'DELETE', 'action'=> ['AdminMediasController@destroy', $photo->id]]) !!}
+                            <input type="hidden" name="photo" value="{{$photo->id}}">
 
 
                              <div class="form-group">
-                                 {!! Form::submit('Delete', ['class'=>'btn btn-danger']) !!}
+                                 <input type="submit" name="delete_single" value="Delete" class="btn btn-danger">
                              </div>
-                        {!! Form::close() !!}
+
 
 
 
