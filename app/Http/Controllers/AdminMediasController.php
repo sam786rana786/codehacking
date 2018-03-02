@@ -80,16 +80,6 @@ class AdminMediasController extends Controller
 
 
 
-        if(isset($request->delete_single)){
-
-
-            $this->destroy($request->photo);
-
-            return redirect()->back();
-
-        }
-
-
         if(isset($request->delete_all) && !empty($request->checkBoxArray)){
 
 
