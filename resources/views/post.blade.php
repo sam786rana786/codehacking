@@ -4,7 +4,7 @@
 
 @section('content')
 
-
+    <div class="col-lg-8">
 
     <!-- Blog Post -->
 
@@ -13,7 +13,7 @@
 
     <!-- Author -->
     <p class="lead">
-        by <a href="#">{{$post->user->name}}</a>
+        by {{$post->user->name}}
     </p>
 
     <hr>
@@ -88,7 +88,11 @@
     <!-- Comment -->
     <div class="media">
         <a class="pull-left" href="#">
+            @if(Auth::guest())
+            <img height="64" class="media-object" src="{{$post->user->photo->file}}" alt="">
+            @else
             <img height="64" class="media-object" src="{{Auth::user()->gravatar}}" alt="">
+            @endif
         </a>
         <div class="media-body">
             <h4 class="media-heading">{{$comment->author}}
@@ -129,7 +133,7 @@
 
                                 <div class="comment-reply col-sm-6">
 
-
+                                    
                                         {!! Form::open(['method'=>'POST', 'action'=> 'CommentRepliesController@createReply']) !!}
                                              <div class="form-group">
 
@@ -164,7 +168,6 @@
                             @endif
 
                      @endforeach
-
             @endif
 
 
@@ -178,37 +181,15 @@
      @endforeach
 
 @endif
-
-
-
+</div>
 @stop
-
-
 @section('scripts')
-
     <script>
-
         $(".comment-reply-container .toggle-reply").click(function(){
-
-
             $(this).next().slideToggle("slow");
-
-
-
-
         });
-
-
-
-
     </script>
-
-
-
     {{--If you want to turn on disqus then use the code below and change the src of the script to reflect your disqus account name--}}
-
-
-
     {{--<div id="disqus_thread"></div>--}}
     {{--<script>--}}
 
@@ -231,13 +212,5 @@
     {{--<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>--}}
 
     {{--<script id="dsq-count-scr" src="//codehacking.disqus.com/count.js" async></script>--}}
-
-
-
-
-
-
-
-
 @stop
 
